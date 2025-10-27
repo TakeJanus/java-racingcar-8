@@ -17,12 +17,8 @@ public class Application { // controller 계층
     }
 
     public static void main(String[] args) {
-        try {
-            Application app = new Application();
-            app.run();
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] " + e.getMessage());
-        }
+        Application app = new Application();
+        app.run();
     }
 
     public void run() {
