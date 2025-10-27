@@ -22,15 +22,12 @@ public class Application { // controller 계층
     }
 
     public void run() {
-        // InputView 입력 받기
-        List<String> carNames = inputView.readCarNames();
-        int tryCount = inputView.readTryCount();
+        List<String> carNames = inputView.readCarNames(); // InputView 입력 받기
+        Race race = new Race(carNames); // Race(Domain) 객체 생성
 
-        // Race(Domain) 객체 생성
-        Race race = new Race(carNames);
+        int tryCount = inputView.readTryCount(); // 시도 횟수 입력 받기
 
-        // OutputView 실행 결과 출력
-        outputView.printStartMessage();
+        outputView.printStartMessage(); // OutputView 실행 결과 출력
 
         // race + outputView 횟수만큼 게임 라운드 실행 및 결과 출력
         for (int i = 0; i < tryCount; i++) {
