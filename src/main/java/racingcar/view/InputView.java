@@ -10,6 +10,7 @@ public class InputView {
     private static final String CAR_NAME_PROMPT = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)";
     private static final String TRY_COUNT_PROMPT = "시도할 횟수는 몇 회인가요?";
     private static final String DELIMITER = ",";
+    private static final int MIN_TRY_COUNT = 1;
 
     public List<String> readCarNames() {
         System.out.println(CAR_NAME_PROMPT);
@@ -23,11 +24,21 @@ public class InputView {
     public int readTryCount() {
         System.out.println(TRY_COUNT_PROMPT);
         String input = Console.readLine();
+        int tryCount;
 
         try {
-            return Integer.parseInt(input);
+            tryCount =  Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("시도 횟수는 숫자여야 합니다.");
+        }
+
+        validateTryCount(tryCount);
+        return tryCount;
+    }
+
+    private void validateTryCount(int tryCount) {
+        if (tryCount < MIN_TRY_COUNT) {
+            throw new IllegalArgumentException("시도 횟수는 1 이상의 양수여야 합니다.");
         }
     }
 }
